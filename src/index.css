@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    overflow-x: hidden;
+  }
+  :focus-visible {
+    outline-color: theme('colors.lavender.DEFAULT');
+  }
+  ::selection {
+    background: theme('colors.lavender.200');
+  }
+}
+
+@layer components {
+  .lav-dialog[open] {
+    animation: lav-dialog-in 0.24s ease-out;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.lavender.200') transparent;
+  }
+  .checkerboard {
+    background-color: #fff;
+    background-image: linear-gradient(45deg, #f1ebf5 25%, transparent 25%), linear-gradient(-45deg, #f1ebf5 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #f1ebf5 75%), linear-gradient(-45deg, transparent 75%, #f1ebf5 75%);
+    background-size: 16px 16px;
+    background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  }
+}
+
+@keyframes lav-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
